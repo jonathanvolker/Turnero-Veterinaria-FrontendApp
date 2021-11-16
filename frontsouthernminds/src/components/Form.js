@@ -5,27 +5,30 @@ import Calendar from 'react-calendar';
 
 
 const Form =() => {
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState("");
     const [razas, setRazas] = useState([]);
+    const fechaNacimiento = date.toString().slice(0,15)
+    const [menor, setMenor] =useState(false)
+    const [input,setInput] =useState({  
+        nombre:"",
+        raza:"",
+        sexo:"",
+        edadAdulta:fechaNacimiento,
+        mes:"" || 0, 
+        aprox:"false"
+    })
+    
+    //console.log(razas)
     useEffect(() => {
         raza().then(response => {
             setRazas(response.data);
         })
-
+    
+    
     },[])
-    console.log(razas)
-    const [input,setInput] =useState({  //controladores de imputs
-       
-        nombre:"",
-        raza:"",
-        sexo:"",
-        edadAdulta:"" || "menordeunaño",
-        mes:0,
-        aprox:false
-      })
 
       const handleInputChange = function(e) {
-          e.preventDefault()
+         // e.preventDefault()
         const upper= e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
         
         setInput({ ...input, [e.target.name]: upper
@@ -48,7 +51,7 @@ const Form =() => {
                 Nombre :
                 <br/>
                 
-                <input className={!input.name && "inpError"} type="text" value={input.nombre} name="name" onChange={handleInputChange} required/>
+                <input className={!input.nombre && "inpError"} type="text" value={input.nombre} name="nombre" onChange={handleInputChange} required/>
             </label>    
             <br/>
 
@@ -76,7 +79,7 @@ const Form =() => {
             <label className= "label">
             <br/>
             Elija el sexo:
-                        <select name="sexo" value={input.sexo} onChange={handleInputChange} >
+                        <select name="menor" value={menor} onChange={handleInputChange} >
                         <option defaultValue="selected"></option>
                         <option value="nene"> nene</option> 
                         <option value="nena"> nena</option>     
@@ -94,21 +97,54 @@ const Form =() => {
             <br/>
             <label className= "label">
             <br/>
-                Seleccione la fecha de nacimiento :
-             <Calendar
-                    className="calendar"
-                    onChange={handleInputChange}
-                    value={date}
-            />
+                su mascota es menor de un año? 
+                <br/>
+                <br/>
+
+        { !menor ?   
+             ( <>
+             ( 
+                <> 
+                seleccione en caso de no saber la fecha exacta      
+              <input type="checkbox" id="aprox" name="aprox" value="true" onChange={handleInputChange} />
+       
+              <Calendar
+                  className="react-calendar"
+                  onChange={(e)=>{setDate(e)}}
+                  value={date}
+              />
+              </>
+        )
+           : 
+          (
+              <>
+              <div>elija los meses</div>
+              <select name="mes" value={input.mes} onChange={handleInputChange} >
+                        <option defaultValue="selected"></option>
+                        <option value="1"> 1 mes</option> 
+                        <option value="2"> 2 meses</option>
+                        <option value="3"> 3 meses</option>
+                        <option value="4"> 4 meses</option>     
+                        <option value="5"> 5 meses</option>
+                        <option value="6"> 6 meses</option>
+                        <option value="7"> 7 meses</option>
+                        <option value="8"> 8 meses</option>
+                        <option value="9"> 9 meses</option>
+                        <option value="10"> 10 meses</option>
+                        <option value="11"> 11 meses</option>
+            </select>
+
+              </>
+          )
+              
+              </>)
+              : null
+              
+              }
               
             </label>    
             <br/>
-            <label className= "label">
-            <br/>
-                Temporada: (Invierno,Otoño,Primavera,Verano)
-                <br/> 
-                <input className={!input.temporada && "inpError"} type="text" value={input.temporada} name="temporada" onChange={handleInputChange} />
-            </label>    
+           
                        
              
             <br/>
