@@ -1,0 +1,68 @@
+/* Set the background color of body to tan */
+body {
+    background-color: tan;
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    align-items : center;
+}
+.container{
+    display : flex;
+    flex-direction : row;
+    justify-content : center;
+    align-items : center;
+    padding : 6rem;
+}
+.row{ 
+    padding : 6rem
+}
+img{
+    width : 50%;
+    height : 50%;
+    border-radius: 12rem;
+}
+  /* On screens that are 992px or less, set the background color to blue */
+  @media screen and (max-width: 992px) {
+    body {
+      background-color: lightblue;
+    }
+    .container{
+        display : flex;
+        flex-direction : row;
+        justify-content : center;
+        align-items : center;
+        padding : 5rem;
+    }
+    .row{ 
+        padding : 5rem
+    }
+    img{
+        width : 30%;
+        height : 30%;
+        border-radius: 10rem;
+    }
+
+  }
+  
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    body {
+      background-color: olive;
+    }
+    .container{
+        display : flex;
+        flex-direction : column;
+        justify-content : center;
+        align-items : center;
+        padding : 2rem;
+    }
+    .row{ 
+        padding : 2rem
+    }
+    img{
+        width : 30%;
+        height : 30%;
+        border-radius: 10rem;
+    }
+
+  }
