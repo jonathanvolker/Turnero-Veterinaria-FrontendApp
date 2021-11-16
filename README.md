@@ -1,0 +1,1 @@
+# client-strapi-SouthernMinds
