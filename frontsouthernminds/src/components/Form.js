@@ -2,10 +2,11 @@ import React,{useEffect , useState} from "react";
 import {raza , nuevoRegistro} from "../controllers/ApiRequest"
 import './Form.css';
 import Calendar from 'react-calendar';
-
+import {useNavigate} from 'react-router-dom';
 
 const Form =() => {
-    const [razas, setRazas] = useState([]);
+    const navigate = useNavigate();
+   const [razas, setRazas] = useState([]);
     const [menor, setMenor] =useState(false)
     const [exacta, setExacta] =useState(true)
     
@@ -13,7 +14,7 @@ const Form =() => {
         nombre:"",
         raza:"",
         sexo:"",
-        edadAdulta:"",
+        fechaNacimiento:"",
         edadAprox:"",
         meses:"" || 0, 
         aprox:"false"
@@ -47,12 +48,15 @@ const Form =() => {
     }
     const handleCheckbox2 =(e)=>{
         setExacta(!exacta)
+        console.log(exacta)
     }
     const handleSubmit= (e)=> {
         e.preventDefault();
         nuevoRegistro(input).then(response => {
             console.log(response.data)
         })
+        alert("mascota cargada con exito")
+        navigate('/')
       }
     return (
         <>
@@ -156,14 +160,14 @@ const Form =() => {
                 <div className="colums-derecha">   
                 <Calendar
                   className="react-calendar"
-                  onChange={(e)=>{  setInput({ ...input, edadAdulta: e.toString().slice(0,15)
+                  onChange={(e)=>{  setInput({ ...input, fechaNacimiento: e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate()
                   });}}
                   value={new Date}
                 />
                 <ul>
                                    Fecha de nacimiento: 
                                  
-                                    <li>{input.edadAdulta} </li>
+                                    <li>{input.fechaNacimiento} </li>
                                   
                                 </ul>
                 </div>
