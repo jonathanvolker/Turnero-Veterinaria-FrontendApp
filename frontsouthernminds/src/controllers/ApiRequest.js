@@ -8,6 +8,9 @@ export const raza = () =>{
 }
 
 
-export const nuevoRegistro = async (nombre, raza, sexo,edadAdulta, mes, aprox ) =>{
+export const nuevoRegistro = async (input) =>{
     
+        let animal = axios.post(`http://localhost:1337/nuevamascota`,input)
+        return animal
+
 }

@@ -1,13 +1,11 @@
 import React,{useEffect , useState} from "react";
-import {raza} from "../controllers/ApiRequest"
+import {raza , nuevoRegistro} from "../controllers/ApiRequest"
 import './Form.css';
 import Calendar from 'react-calendar';
 
 
 const Form =() => {
-    const [date, setDate] = useState("");
     const [razas, setRazas] = useState([]);
-    const fechaNacimiento = date.toString().slice(0,15)
     const [menor, setMenor] =useState(false)
     const [exacta, setExacta] =useState(true)
     
@@ -15,9 +13,9 @@ const Form =() => {
         nombre:"",
         raza:"",
         sexo:"",
-        edadAdulta:date,
+        edadAdulta:"",
         edadAprox:"",
-        mes:"" || 0, 
+        meses:"" || 0, 
         aprox:"false"
     })
     
@@ -52,6 +50,9 @@ const Form =() => {
     }
     const handleSubmit= (e)=> {
         e.preventDefault();
+        nuevoRegistro(input).then(response => {
+            console.log(response.data)
+        })
       }
     return (
         <>
@@ -64,19 +65,20 @@ const Form =() => {
             <div className="form-group">
            <div className="izquierda">
              <div className="colums">
-            <label className= "label">
+            <h4 className= "label">
             <br/>
                 Nombre :
                 <br/>
                 
                 <input className={!input.nombre && "inpError"} type="text" value={input.nombre} name="nombre" onChange={handleInputChange} required/>
-            </label>  
+            </h4>  
             </div>  
             <br/>
             <div className="colums">
-            <label className= "label">
+            <h4 className= "label">
             <br/>
             Elija la raza:
+            <br/>
                         <select name="raza" value={input.raza} onChange={handleInputChange} >
                         <option defaultValue="selected"></option>
                            {razas.map((a)=>{ 
@@ -88,18 +90,19 @@ const Form =() => {
                          </select>
                              {
                                 <ul>
-                                   Raza seleccionados: 
+                                   Raza seleccionada: 
                                  
                                     <li>{input.raza} </li>
                                   
                                 </ul>
                              }
-            </label>  
+            </h4>  
             </div>  
             <div className="colums">
-            <label className= "label">
+            <h4 className= "label">
             <br/>
             Elija el sexo:
+            <br/>
                         <select name="sexo" value={input.sexo} onChange={handleInputChange} >
                         <option defaultValue="selected"></option>
                         <option value="nene"> nene</option> 
@@ -114,7 +117,7 @@ const Form =() => {
                                 </ul>
                              }
           
-           </label>
+           </h4>
            </div>
            </div>    
             <br/>
@@ -123,12 +126,14 @@ const Form =() => {
              <div className="center"> 
              <div className="colums-center">               
              <h4>  su mascota es menor de un año?</h4> 
-                <input type="checkbox" onClick={handleCheckbox} value= "true" /> 
+                <button type="button" onClick={handleCheckbox} value= "true" > Si </button>
+                <button type="button" onClick={handleCheckbox} value= "false" > No </button>
+
              </div>                
                 <br/>
                 <br/>
                 <div className="colums-center">
-                  <h4> seleccione en caso no estar seguro de la edad </h4>    
+                  <h4> Marcar en caso de no conocer la edad exacta</h4>    
                   <input type="checkbox" onClick={handleCheckbox2} value= "true" /> 
                 </div>
              </div>                
@@ -146,29 +151,35 @@ const Form =() => {
              
                exacta ? (<> 
                <div className="colums-derecha">   
-                <h4 className= "label"> indique la fecha exacta </h4>
+                <h4 className= "label"> indique la fecha de nacimiento </h4>
                 </div>
                 <div className="colums-derecha">   
                 <Calendar
                   className="react-calendar"
                   onChange={(e)=>{  setInput({ ...input, edadAdulta: e.toString().slice(0,15)
                   });}}
-                  value={date}
+                  value={new Date}
                 />
+                <ul>
+                                   Fecha de nacimiento: 
+                                 
+                                    <li>{input.edadAdulta} </li>
+                                  
+                                </ul>
                 </div>
                   
               </>) 
               : (
                 <>
                 <div className="colums-derecha">   
-                <h4>  volver a fecha exacta</h4> 
+                <h4>  volver a seleccionar fecha exacta</h4> 
                 <button  onClick={handleCheckbox2 } value= "true" >volver </button> 
                 </div>
                 <div className="colums-derecha">   
                 <h4>elija los años aproximados</h4>
                 <select name="edadAprox" value={input.edadAprox} onChange={handleInputChange } >
                         <option defaultValue="selected"></option>
-                        <option value="1"> 1 años </option> 
+                        <option value= "1"> 1 años </option> 
                         <option value="2"> 2 años</option>
                         <option value="3"> 3 años</option>
                         <option value="4"> 4 años</option>     
@@ -180,6 +191,12 @@ const Form =() => {
                         <option value="10"> 10 años</option>
                         <option value="11"> 11 años</option>
             </select>
+                                 <ul>
+                                   Años aproximados: 
+                                 
+                                    <li>{input.edadAprox} años</li>
+                                  
+                                </ul>
                 </div>
                 </>
 
@@ -190,10 +207,10 @@ const Form =() => {
               (
                   <>
                         
-              <div>elija los meses</div>
-              <select name="mes" value={input.mes} onChange={handleInputChange} >
+              <h4>elija los meses</h4>
+              <select name="meses" value={input.meses} onChange={handleInputChange} >
                         <option defaultValue="selected"></option>
-                        <option value="1"> 1 mes</option> 
+                        <option value="1"> 1 meses</option> 
                         <option value="2"> 2 meses</option>
                         <option value="3"> 3 meses</option>
                         <option value="4"> 4 meses</option>     

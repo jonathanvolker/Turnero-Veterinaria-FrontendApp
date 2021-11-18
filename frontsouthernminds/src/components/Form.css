@@ -24,21 +24,25 @@ body {
 .derecha{
     display : flex;
     flex-direction : column;
-    justify-content : center;
-   padding : 2rem;
+    padding : 2rem;
+    min-width: 200px;
+    max-width: 200px;
   }
   .center{
     display : flex;
     flex-direction : column;
-    justify-content : center;
     align-items : center;
     padding : 2rem;
+    min-width: 200px;
+    max-width: 200px;
   }
 .izquierda{
     display : flex;
     flex-direction : column;
-    justify-content : center;
+    align-items : center;
     padding : 2rem;
+    min-width: 200px;
+    max-width: 200px;
   }
 .row{ 
     padding : 2rem
