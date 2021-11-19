@@ -1,8 +1,12 @@
 import React,{useEffect , useState} from "react";
 import {raza , nuevoRegistro} from "../controllers/ApiRequest"
 import './Form.css';
-import Calendar from 'react-calendar';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { StaticDatePicker } from '@mui/lab';
+import { TextField } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
+
 
 const Form =() => {
     const navigate = useNavigate();
@@ -20,6 +24,7 @@ const Form =() => {
         aprox:"false"
     })
     
+
     //console.log(razas)
     useEffect(() => {
         raza().then(response => {
@@ -162,12 +167,23 @@ const Form =() => {
                 <div className="date">   
                     </div>
                     <div  >   
-                        <Calendar
+                       {/*  <Calendar
                                 className="react-calendar"
                                 onChange={(e)=>{  setInput({ ...input, fechaNacimiento: e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate()
                                 });}}
                                 value={new Date}
-                        />
+                        /> */}
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <StaticDatePicker
+                                displayStaticWrapperAs="desktop"
+                                openTo="year"
+                                value={new Date()}
+                                onChange={(e)=>{  setInput({ ...input, fechaNacimiento: e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate()
+                                });}}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
+                            </LocalizationProvider>
+                    
                                         <ul>
                                         Fecha de nacimiento: 
                                             <p className="list">{input.fechaNacimiento} </p>
