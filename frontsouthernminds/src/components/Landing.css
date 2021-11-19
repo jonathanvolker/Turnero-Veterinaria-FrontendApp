@@ -1,12 +1,29 @@
 /* Set the background color of body to tan */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 body {
-    background-color: tan;
-    display : flex;
-    flex-direction : column;
-    justify-content : center;
-    align-items : center;
+    align-items: center;
+    background: #D8AA96;
+    color:rgba(0,0,0,.8);
+    display: grid;
+    font-size: 14px;
+    font-weight: 400;
+    height: 100vh;
+    justify-items: center;
+    font-family: 'Anton', sans-serif;
 }
+.butt {
+    border: 2px solid #d2bdff;
+    height: 80px;
+    width: 200px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    margin: 25px;
+  } 
 .container{
+    background: #F7B1AB;
     display : flex;
     flex-direction : row;
     justify-content : center;

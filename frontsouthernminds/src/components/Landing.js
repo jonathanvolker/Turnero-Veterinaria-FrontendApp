@@ -18,7 +18,7 @@ const Landing =() => {
                     Bienvenido a la tienda de mascotas de Southern Minds. 
                     Aqui podra registrar su mascota en nuestra base de datos
                 </p>
-              <Link to="/nuevamascota"> <button className="btn">Registrar Mascota</button></Link>  
+              <Link to="/nuevamascota"> <button className="butt">Registrar Mascota</button></Link>  
             </div>
             </div>
         </div>

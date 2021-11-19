@@ -1,5 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 .App {
   text-align: center;
+  font-family: 'Anton', sans-serif;
 }
 
 .App-logo {
