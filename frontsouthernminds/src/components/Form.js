@@ -66,30 +66,38 @@ const Form =() => {
         <>
         <div className="container">
          <div className="form-container">
-                <div className="title-container">
-                    <h1>Aqui puede registrar a su mascota</h1>    
-                </div>
+               
             <form onSubmit={handleSubmit}>
+                <div className="title">
+                    <h1>Aqui puede registrar una nueva mascota</h1>    
+                </div>
              <div className="form-group">
                 <div className="left">
+                    <div className="pet-title">
+                    <label className="nombre" htmlFor="nombre">SouthernMinds Pets</label>
+                    </div>
+                    <div>
                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png" alt="imagen de perro"/>        
+                    </div>
                 </div>
                 <div className="right">
              <div className="izquierda">
-                    <div className="colums">
+                    <div className="colums-peq">
                     <h4 className= "label">
                         Nombre :
                         
+                    </h4>  
                         <input className={!input.nombre && "inpError"} 
                                 type="text" value={input.nombre} 
                                 name="nombre" 
                                 onChange={handleInputChange} 
                                 required/>
-                    </h4>  
-                    </div>  
-                    <div className="colums">
+                    </div> 
+                   
+                    <div className="colums-peq">
                     <h4 className= "label">
                     Elija la raza:
+                    </h4>  
                                 <select name="raza" 
                                         value={input.raza} 
                                         onChange={handleInputChange} >
@@ -103,16 +111,15 @@ const Form =() => {
                                     })}
                                 </select>
                                     {
-                                        <ul>
-                                        Raza seleccionada: 
+                                        <ul className="list">
+                                       
                                         
-                                            <li>{input.raza} </li>
+                                            <p>{input.raza} </p>
                                         
                                         </ul>
                                     }
-                    </h4>  
                     </div>  
-                    <div className="colums">
+                    <div className="colums-peq">
                     <h4 className= "label">
                     Elija el sexo:
                     <br/>
@@ -122,10 +129,10 @@ const Form =() => {
                                 <option value="nena"> nena</option>     
                                 </select>
                                     {
-                                        <ul>
-                                        Sexo seleccionado: 
+                                        <ul className="list">
+                                      
                                         
-                                            <li>{input.sexo} </li>
+                                            <p>{input.sexo} </p>
                                         
                                         </ul>
                                     }
@@ -136,8 +143,8 @@ const Form =() => {
                 <div className="center"> 
                 <div className="colums">               
                 <h4>  Su mascota tiene menos de un año?</h4> 
-                    <button type="button" onClick={handleCheckbox} value= "true" > Si </button>
-                    <button type="button" onClick={handleCheckbox} value= "false" > No </button>
+                    <button className="button" type="button" onClick={handleCheckbox} value= "true" > Si </button>
+                    <button className="button" type="button" onClick={handleCheckbox} value= "false" > No </button>
 
                 </div>                
                     <div className="colums">
@@ -163,7 +170,7 @@ const Form =() => {
                         />
                                         <ul>
                                         Fecha de nacimiento: 
-                                            <li>{input.fechaNacimiento} </li>
+                                            <p className="list">{input.fechaNacimiento} </p>
                                         </ul>
                     </div>
 
@@ -174,7 +181,7 @@ const Form =() => {
                     <>
                     <div className="colums-caledario">   
                         <h4>  volver a calendario</h4> 
-                        <button  onClick={handleCheckbox2 } value= "true" >volver </button> 
+                        <button className="button" onClick={handleCheckbox2 } value= "true" >volver </button> 
                     </div>
                     <div className="colums-caledario">   
                         <h4>elija los años aproximados</h4>
@@ -237,7 +244,7 @@ const Form =() => {
                 )
                 }
                 <div className="submit">
-                        <input className="butt" onClick={!input.name && !input.raza && !input.sexo && handleSubmit} value= "Submit" type="submit"/> 
+                        <input className="butt" disabled={!input.name && !input.raza && !input.sexo } onClick={input.name && input.raza && input.sexo && handleSubmit} value= "Submit" type="submit"/> 
                     </div>
             
                 </div>

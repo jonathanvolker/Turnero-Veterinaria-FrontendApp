@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 body {
-  background: #D8AA96;
+ 
   color: rgba(0,0,0,.1);
   display: grid;
   font-family: 'Anton', sans-serif;
@@ -12,40 +12,72 @@ body {
   color:black;
  
 }
+.pet-title{
+  font-size: 30px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-top: 20px;
+}
+.nombre{
+  background: #807182;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  padding: 0.5rem;
+  border-radius:0.5rem;
+}
 .form-container{
   position:relative;
   margin-top:-6rem;
-}
+ }
+ .colums-peq{
+  width: 250px;
+  height: 150px;
+ }
 
 .form-group{
   display:flex;
   flex-direction:row;
 }
+.list{
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-right: 3rem;
+  margin-top:-0.2rem;
+}
 .left{
   background: #807182;
-  overflow: hidden;
   padding: 40px 0 0 0;
   position: relative;
   text-align: center;
-  max-height: 18rem;
+  max-height: 21rem;
   padding:2rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 img {
-  filter: sepia(100%);
   width: 16rem;
   height:16rem;
   border-radius: 0.2rem;
+ 
 }
-.title-container{
+.title{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   margin-top:2rem;
+  border-radius: 0.2rem;
 }
 h1{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  width:30rem;
+  display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items : center;
+  padding: 0.5rem;
+  border-radius:0.5rem
 } 
 
 .right{
@@ -111,13 +143,21 @@ background-color: #eee;
 .butt {
 border: 2px solid #d2bdff;
 height: 80px;
-width: 250px;
+width: 150px;
 border-radius: 4px;
 position: relative;
 cursor: pointer;
-font-family: "Roboto", sans-serif;
 margin: 25px;
 } 
+.button{
+border: 2px solid #d2bdff;
+height: 20px;
+width: 30px;
+border-radius: 4px;
+position: relative;
+cursor: pointer;
+margin: 25px;
+}
 .submit{
 display:flex;
 align-items: center;

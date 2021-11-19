@@ -8,7 +8,9 @@ const Landing =() => {
 
     return (
         <div className="container">
-            <img src="https://img.freepik.com/vector-gratis/tienda-mascotas-relacionada_24908-57968.jpg?size=338&ext=jpg" />
+            <div className="img-container">
+            <img className="landing-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHXx7adkiKfkxshoykiakxsdUMmKq7LgkTaQ&usqp=CAU" />
+            </div>
             <div className="row">
             <div className="title-container">
                 <h1 className="title">Southern Minds Pets </h1>
