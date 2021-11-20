@@ -3,7 +3,13 @@ import {raza , nuevoRegistro} from "../controllers/ApiRequest"
 import './Form.css';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import { StaticDatePicker } from '@mui/lab';
+import { DatePicker } from '@mui/lab';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import { TextField } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
@@ -23,9 +29,8 @@ const Form =() => {
         meses:"" || 0, 
         aprox:"false"
     })
-    
 
-    //console.log(razas)
+    console.log(razas)
     useEffect(() => {
         raza().then(response => {
             setRazas(response.data);
@@ -50,11 +55,24 @@ const Form =() => {
     }
     const handleCheckbox =(e)=>{
         setMenor(!menor)
+        if(input.meses !== ""){
+            setInput({ ...input, meses : ""})
+        }
     }
     const handleCheckbox2 =(e)=>{
         setExacta(!exacta)
-         console.log(exacta)
+        
+            if(input.aprox === "true"){
+                setInput({ ...input, aprox:"false"})
+            }else{
+
+                setInput({ ...input, aprox:"true"})
+            }
+        if(input.edadAprox !== ""){
+            setInput({ ...input, edadAprox:""})
+        }
     }
+
     const handleSubmit= (e)=> {
         e.preventDefault();
         if(!input.sexo || !input.nombre || !input.raza ){
@@ -73,8 +91,8 @@ const Form =() => {
          <div className="form-container">
                
             <form onSubmit={handleSubmit}>
-                <div className="title">
-                    <h1>Aqui puede registrar una nueva mascota</h1>    
+                <div className="title-form">
+                    <h1>Registre una nueva mascota</h1>    
                 </div>
              <div className="form-group">
                 <div className="left">
@@ -92,69 +110,98 @@ const Form =() => {
                         Nombre :
                         
                     </h4>  
-                        <input className={!input.nombre && "inpError"} 
-                                type="text" value={input.nombre} 
-                                name="nombre" 
-                                onChange={handleInputChange} 
-                                required/>
-                    </div> 
+                    
+                     <TextField
+                        id="outlined-name"
+                        label="Nombre"
+                        name="nombre"
+                        onChange={handleInputChange}
+                        required
+                       />
+                        </div> 
                    
                     <div className="colums-peq">
                     <h4 className= "label">
                     Elija la raza:
-                    </h4>  
-                                <select name="raza" 
-                                        value={input.raza} 
-                                        onChange={handleInputChange} >
+                    </h4> 
+                    <FormControl fullWidth>
+                            <InputLabel id="raza">Raza</InputLabel>
+                            <Select
+                            labelId="raza"
+                            id="raza"
+                            name="raza"
+                            label="Raza"
+                            onChange={handleInputChange}
+                            >
+                           {razas.map((raza) =>  {
+                               return (
+                               <MenuItem value={raza.nombreDeRaza}>{raza.nombreDeRaza}</MenuItem>)})}
+                         
+          
+                            </Select>
+                        </FormControl>
 
-                                <option defaultValue="selected"></option>
-                                {razas.map((a)=>{ 
-                                    
-                                    return(
-                                            <option value={a.nombreDeRaza} >{a.nombreDeRaza} </option>
-                                        )
-                                    })}
-                                </select>
-                                    {
-                                        <ul className="list">
-                                       
-                                        
-                                            <p>{input.raza} </p>
-                                        
-                                        </ul>
-                                    }
                     </div>  
                     <div className="colums-peq">
                     <h4 className= "label">
                     Elija el sexo:
-                    <br/>
-                                <select name="sexo" value={input.sexo} onChange={handleInputChange} >
-                                <option defaultValue="selected"></option>
-                                <option value="nene"> nene</option> 
-                                <option value="nena"> nena</option>     
-                                </select>
-                                    {
-                                        <ul className="list">
-                                      
-                                        
-                                            <p>{input.sexo} </p>
-                                        
-                                        </ul>
-                                    }
-                
-                </h4>
+                    
+                    </h4>
+                    <FormControl fullWidth>
+                            <InputLabel id="raza">Sexo</InputLabel>
+                            <Select
+                            labelId="sexo"
+                            id="sexo"
+                            name="sexo"
+                            label="Sexo"
+                            onChange={handleInputChange}
+                            >
+                           <MenuItem value={"hembra"}>hembra</MenuItem>
+                           <MenuItem value={"macho"}>macho</MenuItem>
+          
+                            </Select>
+                     </FormControl>
                 </div>
             </div>    
                 <div className="center"> 
                 <div className="colums">               
-                <h4>  Su mascota tiene menos de un año?</h4> 
-                    <button className="button" type="button" onClick={handleCheckbox} value= "true" > Si </button>
-                    <button className="button" type="button" onClick={handleCheckbox} value= "false" > No </button>
+                <h4>  La mascota tiene menos de un año?</h4> 
+                <div className="buttons-center">
+                     <Stack direction="row" spacing={2}>
+                        <Button variant="outlined" 
+                        onClick={handleCheckbox } value= "true" 
+                        style={{
+                            borderRadius: 5,
+                            backgroundColor: "#66806A",
+                            padding: "5px 10px",
+                            fontSize: "10px",
+                            color:"black",
+                        }}
+                      >si
+                      </Button>
+                       
+                        </Stack> 
+                        <Stack direction="row" spacing={2}>
+                        <Button variant="outlined" 
+                        onClick={handleCheckbox } value= "false" 
+                        style={{
+                            borderRadius: 5,
+                            backgroundColor: "#66806A",
+                            padding: "5px 10px",
+                            fontSize: "10px",
+                            color:"black",
+                        }}
+                      >no
+                      </Button>
+                       
+                        </Stack>  
+                        </div>           
+
 
                 </div>                
                     <div className="colums">
                     <h4> Marcar en caso de no conocer la edad exacta</h4>    
-                    <input className="checkmark" checked={exacta} type="checkbox" onClick={handleCheckbox2} value= "false" /> 
+                    <input className="checkmark" checked={exacta} type="checkbox" onClick={handleCheckbox2} value= "true" /> 
                     </div>
                 </div>                
                 <div className="derecha">
@@ -167,27 +214,18 @@ const Form =() => {
                 <div className="date">   
                     </div>
                     <div  >   
-                       {/*  <Calendar
-                                className="react-calendar"
-                                onChange={(e)=>{  setInput({ ...input, fechaNacimiento: e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate()
-                                });}}
-                                value={new Date}
-                        /> */}
+                      
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <StaticDatePicker
-                                displayStaticWrapperAs="desktop"
-                                openTo="year"
-                                value={new Date()}
-                                onChange={(e)=>{  setInput({ ...input, fechaNacimiento: e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate()
+                        <DatePicker
+                            label="fecha de nac."
+                            value={input.fechaNacimiento}
+                            onChange={(e)=>{  setInput({ ...input, fechaNacimiento: e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate()
                                 });}}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                            </LocalizationProvider>
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                        </LocalizationProvider>
                     
-                                        <ul>
-                                        Fecha de nacimiento: 
-                                            <p className="list">{input.fechaNacimiento} </p>
-                                        </ul>
+                                   
                     </div>
 
                     </>
@@ -197,39 +235,57 @@ const Form =() => {
                     <>
                     <div className="colums-caledario">   
                         <h4>  volver a calendario</h4> 
-                        <button className="button" onClick={handleCheckbox2 } value= "true" >volver </button> 
+                       <div className="volver">
+                        <Stack direction="row" spacing={2}>
+                        <Button variant="outlined" 
+                        onClick={handleCheckbox2 } value= "true" 
+                        style={{
+                            borderRadius: 5,
+                            backgroundColor: "#66806A",
+                            padding: "5px 10px",
+                            fontSize: "10px",
+                            color:"black",
+                        }}
+                      >volver
+                      </Button>
+                       
+                        </Stack>
+                   </div>
                     </div>
                     <div className="colums-caledario">   
-                        <h4>elija los años aproximados</h4>
-                        <select name="edadAprox" value={input.edadAprox} onChange={handleInputChange } >
-                                <option defaultValue="selected"></option>
-                                <option value= "1"> 1 años </option> 
-                                <option value="2"> 2 años</option>
-                                <option value="3"> 3 años</option>
-                                <option value="4"> 4 años</option>     
-                                <option value="5"> 5 años</option>
-                                <option value="6"> 6 años</option>
-                                <option value="7"> 7 años</option>
-                                <option value="8"> 8 años</option>
-                                <option value="9"> 9 años</option>
-                                <option value="10"> 10 años</option>
-                                <option value="11"> 11 años</option>
-                                <option value="12"> 12 años</option>
-                                <option value="13"> 13 años</option>
-                                <option value="14"> 14 años</option>
-                                <option value="15"> 15 años</option>
-                                <option value="16"> 16 años</option>
-                                <option value="17"> 17 años</option>
-                                <option value="18"> 18 años</option>
-                                <option value="19"> 19 años</option>
-
-                        </select>
-                        <ul>
-                        Años aproximados: 
-                        
-                            <li>{input.edadAprox} años</li>
-                        
-                        </ul>
+                        <h4>Seleccione años aproximados</h4>
+                        <FormControl fullWidth>
+                            <InputLabel id="raza">Años aproximados</InputLabel>
+                            <Select
+                            labelId="edadAprox"
+                            id="edadAprox"
+                            name="edadAprox"
+                            label="edadAprox"
+                            onChange={handleInputChange}
+                            >
+                           <MenuItem value={"1"}>1 año</MenuItem>
+                           <MenuItem value={"2"}>2 años</MenuItem>
+                           <MenuItem value={"3"}>3 años</MenuItem>
+                           <MenuItem value={"4"}>4 años</MenuItem>
+                           <MenuItem value={"5"}>5 años</MenuItem>
+                           <MenuItem value={"6"}>6 años</MenuItem>
+                           <MenuItem value={"7"}>7 años</MenuItem>
+                           <MenuItem value={"8"}>8 años</MenuItem>
+                           <MenuItem value={"9"}>9 años</MenuItem>
+                           <MenuItem value={"10"}>10 años</MenuItem>
+                           <MenuItem value={"11"}>11 años</MenuItem>
+                           <MenuItem value={"12"}>12 años</MenuItem>
+                           <MenuItem value={"13"}>13 años</MenuItem>
+                           <MenuItem value={"14"}>14 años</MenuItem>
+                           <MenuItem value={"15"}>15 años</MenuItem>
+                           <MenuItem value={"16"}>16 años</MenuItem>
+                           <MenuItem value={"17"}>17 años</MenuItem>
+                           <MenuItem value={"18"}>18 años</MenuItem>
+                           <MenuItem value={"19"}>19 años</MenuItem>
+                           <MenuItem value={"20"}>20 años</MenuItem>
+                           </Select>
+                        </FormControl>
+                      
                     </div>
                     </>
 
@@ -240,27 +296,48 @@ const Form =() => {
                 (
                     <>
                 <div className="colums">            
-                        <h4>elija los meses</h4>
-                        <select name="meses" value={input.meses} onChange={handleInputChange} >
-                                    <option defaultValue="selected"></option>
-                                    <option value="1"> 1 meses</option> 
-                                    <option value="2"> 2 meses</option>
-                                    <option value="3"> 3 meses</option>
-                                    <option value="4"> 4 meses</option>     
-                                    <option value="5"> 5 meses</option>
-                                    <option value="6"> 6 meses</option>
-                                    <option value="7"> 7 meses</option>
-                                    <option value="8"> 8 meses</option>
-                                    <option value="9"> 9 meses</option>
-                                    <option value="10"> 10 meses</option>
-                                    <option value="11"> 11 meses</option>
-                        </select>
+                        <h4>Elija los meses de la mascota</h4>
+                        <FormControl fullWidth>
+                            <InputLabel id="meses">meses aproximados</InputLabel>
+                            <Select
+                            labelId="meses"
+                            id="meses"
+                            name="meses"
+                            label="meses"
+                            onChange={handleInputChange}
+                            >
+                           <MenuItem value={"1"}>1 mes</MenuItem>
+                           <MenuItem value={"2"}>2 meses</MenuItem>
+                           <MenuItem value={"3"}>3 meses</MenuItem>
+                           <MenuItem value={"4"}>4 meses</MenuItem>
+                           <MenuItem value={"5"}>5 meses</MenuItem>
+                           <MenuItem value={"6"}>6 meses</MenuItem>
+                           <MenuItem value={"7"}>7 meses</MenuItem>
+                           <MenuItem value={"8"}>8 meses</MenuItem>
+                           <MenuItem value={"9"}>9 meses</MenuItem>
+                           <MenuItem value={"10"}>10 meses</MenuItem>
+                           <MenuItem value={"11"}>11 meses</MenuItem>
+                           </Select>
+                        </FormControl>
+                        
                     </div>
                 </>
                 )
                 }
+                <br/>
                 <div className="submit">
-                        <input className="butt" disabled={!input.name && !input.raza && !input.sexo } onClick={input.name && input.raza && input.sexo && handleSubmit} value= "Submit" type="submit"/> 
+                        <Stack direction="row" spacing={2}>
+                        <Button variant="outlined"  
+                        style={{
+                            borderRadius: 5,
+                            backgroundColor: "#66806A",
+                            padding: "10px 26px",
+                            fontSize: "18px",
+                            color:"black"
+                        }}
+                        disabled={!input.name && !input.raza && !input.sexo } onClick={input.name && input.raza && input.sexo && handleSubmit} value= "Submit" type="submit">Cargar</Button>
+                       
+                        </Stack>
                     </div>
             
                 </div>
