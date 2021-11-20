@@ -13,4 +13,9 @@ y puede comenzar a utilizar la aplicacion.
 
 Algunas imagenes de la app:
 
-![img](https://github.com/jonathanvolker/client-strapi-SouthernMinds/tree/main/frontsouthernminds/assets/landingPage.jpg)
+
+![img](https://github.com/jonathanvolker/client-strapi-SouthernMinds/blob/main/frontsouthernminds/assets/landingPage.jpg?raw=true)
+![img](https://github.com/jonathanvolker/client-strapi-SouthernMinds/blob/main/frontsouthernminds/assets/form1.jpg?raw=true)
+![img](https://github.com/jonathanvolker/client-strapi-SouthernMinds/blob/main/frontsouthernminds/assets/form2.jpg?raw=true)
+![img](https://github.com/jonathanvolker/client-strapi-SouthernMinds/blob/main/frontsouthernminds/assets/form3.jpg?raw=true)
+
