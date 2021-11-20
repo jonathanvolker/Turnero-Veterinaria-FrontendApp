@@ -12,4 +12,5 @@ una vez finalizado el proceso de instalacion, ejecutar el siguiente comando:
 y puede comenzar a utilizar la aplicacion.
 
 Algunas imagenes de la app:
-<img src="https://github.com/jonathanvolker/client-strapi-SouthernMinds/tree/main/frontsouthernminds/assets/landingPage.jpg" alt="My cool logo"/>
+
+![img](https://github.com/jonathanvolker/client-strapi-SouthernMinds/tree/main/frontsouthernminds/assets/landingPage.jpg)
