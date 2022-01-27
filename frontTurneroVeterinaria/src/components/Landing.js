@@ -14,12 +14,12 @@ const Landing =() => {
             </div>
             <div className="row">
             <div className="title-container">
-                <h1 className="title">Southern Minds Pets </h1>
+                <h1 className="title">PetsData </h1>
             </div>
             <div className="p-container"> 
                 <p className="p"> 
-                    Bienvenido al registrador de mascotas de Southern Minds. 
-                    Aqui podra registrar la mascota en la base de datos
+                    Bienvenido al registrador de mascotas de PetsData. 
+                    Aqui podra registrar la mascota en la base.
                 </p>
               <Link to="/nuevamascota" style={{ textDecoration: 'none' }} > 
           

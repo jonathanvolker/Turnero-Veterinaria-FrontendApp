@@ -15,11 +15,11 @@ import {useNavigate} from 'react-router-dom';
 
 
 const Form =() => {
+    
     const navigate = useNavigate();
-   const [razas, setRazas] = useState([]);
+    const [razas, setRazas] = useState([]);
     const [menor, setMenor] =useState(false)
     const [exacta, setExacta] =useState(false)
-    
     const [input,setInput] =useState({  
         nombre:"",
         raza:"",
@@ -30,7 +30,7 @@ const Form =() => {
         aprox:"false"
     })
 
-    console.log(razas)
+    //console.log(razas)
     useEffect(() => {
         raza().then(response => {
             setRazas(response.data);
@@ -97,7 +97,7 @@ const Form =() => {
              <div className="form-group">
                 <div className="left">
                     <div className="pet-title">
-                    <label className="nombre" htmlFor="nombre">SouthernMinds Pets</label>
+                    <label className="nombre" htmlFor="nombre">PetsData</label>
                     </div>
                     <div>
                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png" alt="imagen de perro"/>        
