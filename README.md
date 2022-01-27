@@ -1,4 +1,4 @@
-# client-strapi-SouthernMinds
+# client-strapi-TurneroDeVeterinaria
 
 Para comenzar clone el repositorio a su pc , para la ejecucion de la app en puerto local
 abrir el repositorio en VS Code y posicionarse sobre el directorio "frontsouternminds" y ejecutar el siguiente comando:
